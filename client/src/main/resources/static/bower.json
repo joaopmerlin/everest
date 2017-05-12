@@ -1,0 +1,15 @@
+{
+  "name": "client",
+  "authors": [
+    "João Paulo <joao.p.merlin@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "bootstrap": "v3.3.7",
+    "font-awesome": "^4.7.0",
+    "metisMenu": "^2.7.0"
+  }
+}
