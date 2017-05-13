@@ -22,32 +22,89 @@
 
         <div class="col-sm-4">
             <h4 class="kanban-header">A fazer</h4>
-            <div class="list-group list-kanban">
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
-            </div>
+            <draggable v-model="tarefasPendente" :options="{group:'tarefa'}"
+                       class="list-group list-kanban dragArea"
+                       data-status="PENDENTE" @add="updateStatus">
+                <a v-for="tarefa in tarefasPendente" href="#"
+                   class="list-group-item" @click="alterar(tarefa)">
+                    <div class="row tarefa-descricao">
+                        <div class="col-sm-12">
+                            {{tarefa.descricao}}
+                        </div>
+                    </div>
+                    <div class="row tarefa-user">
+                        <div class="col-sm-12">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span v-if="!tarefa.user">Tarefa não atribuída</span>
+                            <span v-if="tarefa.user">Atribuída para {{tarefa.user.nome}}</span>
+                        </div>
+                    </div>
+                    <div class="row tarefa-data">
+                        <div class="col-sm-12">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            Criada em {{tarefa.data}}
+                        </div>
+                    </div>
+                </a>
+            </draggable>
         </div>
 
         <div class="col-sm-4">
             <h4 class="kanban-header">Em andamento</h4>
-            <div class="list-group list-kanban">
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
-            </div>
+            <draggable v-model="tarefasAndamento" :options="{group:'tarefa'}"
+                       class="list-group list-kanban dragArea"
+                       data-status="ANDAMENTO" @add="updateStatus">
+                <a v-for="tarefa in tarefasAndamento" href="#"
+                   class="list-group-item" @click="alterar(tarefa)">
+                    <div class="row tarefa-descricao">
+                        <div class="col-sm-12">
+                            {{tarefa.descricao}}
+                        </div>
+                    </div>
+                    <div class="row tarefa-user">
+                        <div class="col-sm-12">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span v-if="!tarefa.user">Tarefa não atribuída</span>
+                            <span v-if="tarefa.user">Atribuída para {{tarefa.user.nome}}</span>
+                        </div>
+                    </div>
+                    <div class="row tarefa-data">
+                        <div class="col-sm-12">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            Criada em {{tarefa.data}}
+                        </div>
+                    </div>
+                </a>
+            </draggable>
         </div>
 
         <div class="col-sm-4">
             <h4 class="kanban-header">Finalizado</h4>
-            <div class="list-group list-kanban">
-                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
-                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item">Vestibulum at eros</a>
-            </div>
+            <draggable v-model="tarefasFinalizado" :options="{group:'tarefa'}"
+                       class="list-group list-kanban dragArea"
+                       data-status="FINALIZADO" @add="updateStatus">
+                <a v-for="tarefa in tarefasFinalizado" href="#"
+                   class="list-group-item" @click="alterar(tarefa)">
+                    <div class="row tarefa-descricao">
+                        <div class="col-sm-12">
+                            {{tarefa.descricao}}
+                        </div>
+                    </div>
+                    <div class="row tarefa-user">
+                        <div class="col-sm-12">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span v-if="!tarefa.user">Tarefa não atribuída</span>
+                            <span v-if="tarefa.user">Atribuída para {{tarefa.user.nome}}</span>
+                        </div>
+                    </div>
+                    <div class="row tarefa-data">
+                        <div class="col-sm-12">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            Criada em {{tarefa.data}}
+                        </div>
+                    </div>
+                </a>
+            </draggable>
         </div>
 
     </div>
@@ -65,10 +122,22 @@
 
                     <form id="form" @submit="salvar(tarefa)" @submit.prevent>
 
+                        <div v-if="tarefa.user" class="form-group">
+                            <label>Tarefa atribuida para {{tarefa.user.nome}}</label>
+                            <button v-if="tarefa.userId && tarefa.userId == user.id && tarefa.status != 'FINALIZADO'"
+                                    class="btn btn-warning" @click="largarTarefa(tarefa)">Largar tarefa</button>
+                        </div>
+
                         <div class="form-group">
-                            <label for="descricao">Descricao</label>
-                            <input v-model="tarefa.descricao" type="text" class="form-control" id="descricao"
-                                   placeholder="Descricao" required>
+                            <label for="descricao">Descrição</label>
+                            <textarea v-model="tarefa.descricao" type="text" class="form-control" id="descricao"
+                                      placeholder="Descricao" required rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descricao">Resposta</label>
+                            <textarea v-model="tarefa.resposta" type="text" class="form-control" id="resposta"
+                                      placeholder="Resposta" rows="5"></textarea>
                         </div>
 
                     </form>
@@ -76,7 +145,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="submit" form="form" class="btn btn-primary">Salvar</button>
+                    <button :disabled="tarefa.userId && tarefa.userId != user.id"
+                            type="submit" form="form" class="btn btn-primary">Salvar</button>
                 </div>
             </div>
         </div>

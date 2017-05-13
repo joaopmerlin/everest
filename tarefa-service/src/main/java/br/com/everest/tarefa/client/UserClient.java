@@ -15,6 +15,9 @@ import java.util.List;
 @FeignClient(value = "auth-service", path = "/auth/user")
 public interface UserClient {
 
+    @RequestMapping(value = "/logado", method = RequestMethod.GET)
+    User logado();
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     User findOne(@PathVariable("id") Long id);
 

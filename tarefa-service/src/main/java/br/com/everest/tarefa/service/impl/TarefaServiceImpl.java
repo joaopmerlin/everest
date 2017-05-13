@@ -1,6 +1,8 @@
 package br.com.everest.tarefa.service.impl;
 
+import br.com.everest.tarefa.client.UserClient;
 import br.com.everest.tarefa.data.TarefaData;
+import br.com.everest.tarefa.enumeration.Status;
 import br.com.everest.tarefa.model.Tarefa;
 import br.com.everest.tarefa.model.User;
 import br.com.everest.tarefa.service.TarefaService;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,12 +30,16 @@ public class TarefaServiceImpl implements TarefaService {
 
     @Autowired private TarefaData tarefaData;
     @Autowired private UserService userService;
+    @Autowired private UserClient userClient;
 
     @Override
     @CacheEvict("TarefaServiceImpl-findAll")
     public Tarefa save(Tarefa tarefa) {
         if (tarefa.getId() == null){
-            tarefa.setCriacao(LocalDateTime.now());
+            tarefa.setCriacao(new Date());
+        }
+        if (tarefa.getUserId() == null && tarefa.getStatus().equals(Status.ANDAMENTO)){
+            tarefa.setUserId(userClient.logado().getId());
         }
         return this.tarefaData.save(tarefa);
     }
@@ -44,10 +51,10 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
     @Override
-    @Cacheable("TarefaServiceImpl-findAll")
+    //@Cacheable("TarefaServiceImpl-findAll")
     public List<Tarefa> findAll() {
         List<User> users = new ArrayList<>();
-        return this.tarefaData.findAll().parallelStream().map(tarefa -> {
+        return this.tarefaData.findAll().stream().map(tarefa -> {
             if (tarefa.getUserId() != null){
                 Optional<User> user = users.stream().filter(e -> e.getId() == tarefa.getUserId()).findAny();
                 if (user.isPresent()){

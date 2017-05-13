@@ -1,0 +1,16 @@
+{
+  "name": "everest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "alertifyjs": "^1.10.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "metismenu": "^2.7.0",
+    "vue": "^2.3.3",
+    "vuedraggable": "^2.11.0"
+  }
+}

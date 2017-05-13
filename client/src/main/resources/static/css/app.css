@@ -15,6 +15,7 @@ body {
     padding: 0 15px;
     min-height: 568px;
     background-color: white;
+    min-height: calc(100vh - 50px);
 }
 
 @media (min-width: 768px) {
@@ -572,4 +573,21 @@ table.dataTable thead .sorting:after {
     height: 45px;
     width: 45px;
     box-shadow: 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.2), 0 1px 8px 0 rgba(0,0,0,.12);
+}
+
+.list-kanban .list-group-item {
+    background-color: #f8f8f8;
+}
+
+.tarefa-descricao {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.tarefa-data, .tarefa-user {
+    font-size: 12px;
+}
+
+.dragArea {
+    min-height: 50px;
 }

@@ -32,16 +32,14 @@ var app = new Vue({
         },
 
         remover: function (user) {
-            alertify.confirm('Confirm Title', 'Confirm Message', function () {
-
-            });
-
-            $.post("/usuario/remove", JSON.stringify(user)).then(function () {
-                app.getUsers();
-                alertify.success('Cadastro removido com sucesso');
-            }, function (e) {
-                alertify.error(e.responseJSON.message);
-            });
+            alertify.confirm('Confirmação', 'Remover este cadastro?', function () {
+                $.post("/usuario/remove", JSON.stringify(user)).then(function () {
+                    app.getUsers();
+                    alertify.success('Cadastro removido com sucesso');
+                }, function (e) {
+                    alertify.error(e.responseJSON.message);
+                });
+            }, function () {});
         }
 
     },
