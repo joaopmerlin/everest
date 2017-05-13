@@ -50,8 +50,18 @@ public class UserController {
                 throw new RuntimeException("user already exists");
             }
 
-            user.setSenha(bCryptPasswordEncoder.encode(user.getSenha()));
+            user.setSenha(bCryptPasswordEncoder.encode("123"));
+        } else {
+
+            User userAnt = this.userData.findOne(user.getId());
+            user.setSenha(userAnt.getSenha());
+
         }
         return this.userData.save(user);
+    }
+
+    @DeleteMapping
+    public void remove(@RequestBody User user){
+        this.userData.delete(user);
     }
 }

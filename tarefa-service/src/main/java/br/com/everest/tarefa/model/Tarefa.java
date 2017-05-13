@@ -25,8 +25,8 @@ public class Tarefa implements Serializable {
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    private LocalDateTime criacao = LocalDateTime.now();
+    @Column(updatable = false)
+    private LocalDateTime criacao;
 
     @NotEmpty
     private String descricao;
@@ -37,7 +37,7 @@ public class Tarefa implements Serializable {
     @NotNull
     private Status status;
 
-    private Long id_usuario;
+    private Long userId;
 
     @Transient
     private User user;

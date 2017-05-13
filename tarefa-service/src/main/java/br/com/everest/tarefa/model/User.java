@@ -26,7 +26,10 @@ public class User implements Serializable {
 
     private Long id;
 
+    @NotEmpty
     private String nome;
 
+    @NotEmpty
+    @Email
     private String email;
 }

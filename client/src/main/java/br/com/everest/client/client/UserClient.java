@@ -3,6 +3,7 @@ package br.com.everest.client.client;
 import br.com.everest.tarefa.model.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,4 +24,10 @@ public interface UserClient {
 
     @RequestMapping(method = RequestMethod.GET)
     List<User> findAll();
+
+    @RequestMapping(method = RequestMethod.POST)
+    User save(@RequestBody User user);
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    void remove(@RequestBody User user);
 }

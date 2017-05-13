@@ -5,6 +5,10 @@
  */
 $(function () {
     $('#side-menu').metisMenu();
+
+    $.ajaxSetup({
+        contentType: "application/json; charset=utf-8"
+    });
 });
 
 //Loads the correct sidebar on window load,

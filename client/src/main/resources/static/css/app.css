@@ -564,7 +564,7 @@ table.dataTable thead .sorting:after {
     padding-bottom: 9px;
 }
 
-.novo-kanban {
+.btn-novo {
     border-radius: 100%;
     position: fixed;
     bottom: 10px;

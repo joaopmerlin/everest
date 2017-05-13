@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+
+<body>
+
+<div layout:fragment="content" id="app">
+
+    <button type="button" class="btn btn-primary btn-novo" @click="novo()"
+            data-toggle="modal" data-target="#myModal">
+        <i class="fa fa-plus fa-fw"></i>
+    </button>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Tarefas</h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <h4 class="kanban-header">A fazer</h4>
+            <div class="list-group list-kanban">
+                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <h4 class="kanban-header">Em andamento</h4>
+            <div class="list-group list-kanban">
+                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <h4 class="kanban-header">Finalizado</h4>
+            <div class="list-group list-kanban">
+                <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+                <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item">Vestibulum at eros</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Modal Edit-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Tarefa</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form id="form" @submit="salvar(tarefa)" @submit.prevent>
+
+                        <div class="form-group">
+                            <label for="descricao">Descricao</label>
+                            <input v-model="tarefa.descricao" type="text" class="form-control" id="descricao"
+                                   placeholder="Descricao" required>
+                        </div>
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" form="form" class="btn btn-primary">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div layout:fragment="script">
+    <script src="/js/tarefa.js"></script>
+</div>
+
+</body>

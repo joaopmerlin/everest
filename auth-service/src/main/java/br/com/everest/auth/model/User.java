@@ -36,7 +36,6 @@ public class User implements UserDetails, Serializable {
     @Email
     private String email;
 
-    @NotEmpty
     private String senha;
 
     @Override

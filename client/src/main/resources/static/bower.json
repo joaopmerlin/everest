@@ -10,6 +10,8 @@
   "dependencies": {
     "bootstrap": "v3.3.7",
     "font-awesome": "^4.7.0",
-    "metisMenu": "^2.7.0"
+    "metisMenu": "^2.7.0",
+    "vue": "^2.3.3",
+    "alertifyjs": "^1.0.11"
   }
 }
