@@ -52,9 +52,10 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="/perfil"><i class="fa fa-user fa-fw"></i> Perfil</a>
-                    </li>
-                    <li><a href="/alterar-senha"><i class="fa fa-gear fa-fw"></i> Alterar senha</a>
+                    <li>
+                        <a href=#" data-toggle="modal" data-target="#modalSenha">
+                            <i class="fa fa-gear fa-fw"></i> Alterar senha
+                        </a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -83,9 +84,7 @@
     </nav>
 
     <div id="page-wrapper">
-
         <div layout:fragment="content"></div>
-
     </div>
 
 </div>
@@ -111,6 +110,8 @@
 <script src="/node_modules/sortablejs/Sortable.js"></script>
 
 <script src="/node_modules/vuedraggable/dist/vuedraggable.js"></script>
+
+<script src="/node_modules/chart.js/dist/Chart.min.js"></script>
 
 <script th:inline="javascript">
     /*<![CDATA[*/

@@ -115,7 +115,8 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Tarefa</h4>
                 </div>
                 <div class="modal-body">
@@ -124,8 +125,15 @@
 
                         <div v-if="tarefa.user" class="form-group">
                             <label>Tarefa atribuida para {{tarefa.user.nome}}</label>
-                            <button v-if="tarefa.userId && tarefa.userId == user.id && tarefa.status != 'FINALIZADO'"
-                                    class="btn btn-warning" @click="largarTarefa(tarefa)">Largar tarefa</button>
+                            <button type="button" class="btn btn-warning" @click="largarTarefa(tarefa)"
+                                    v-if="tarefa.userId && tarefa.userId == user.id && tarefa.status != 'FINALIZADO'">
+                                Largar tarefa
+                            </button>
+                        </div>
+
+                        <div v-if="tarefa.id && !tarefa.user" class="form-group">
+                            <label>Tarefa não atribuída</label>
+                            <button type="button" class="btn btn-success" @click="pegarTarefa(tarefa)">Pegar tarefa</button>
                         </div>
 
                         <div class="form-group">
@@ -134,7 +142,7 @@
                                       placeholder="Descricao" required rows="5"></textarea>
                         </div>
 
-                        <div class="form-group">
+                        <div v-if="tarefa.id && tarefa.status != 'PENDENTE'" class="form-group">
                             <label for="descricao">Resposta</label>
                             <textarea v-model="tarefa.resposta" type="text" class="form-control" id="resposta"
                                       placeholder="Resposta" rows="5"></textarea>
@@ -144,9 +152,12 @@
 
                 </div>
                 <div class="modal-footer">
+                    <button v-if="tarefa.status == 'FINALIZADO'" type="button" class="btn btn-danger"
+                            data-dismiss="modal" @click="guardarTarefa(tarefa)">Guardar tarefa</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
                     <button :disabled="tarefa.userId && tarefa.userId != user.id"
-                            type="submit" form="form" class="btn btn-primary">Salvar</button>
+                            type="submit" form="form" class="btn btn-primary">Salvar
+                    </button>
                 </div>
             </div>
         </div>

@@ -23,6 +23,11 @@ public class TarefaController {
         return this.tarefaService.findAll();
     }
 
+    @GetMapping("last")
+    public List<Tarefa> findLast(){
+        return this.tarefaService.findLast();
+    }
+
     @GetMapping("{id}")
     public Tarefa findOne(@PathVariable Long id){
         return this.tarefaService.findOne(id);

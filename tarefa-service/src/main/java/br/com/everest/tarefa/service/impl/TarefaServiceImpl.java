@@ -8,12 +8,9 @@ import br.com.everest.tarefa.model.User;
 import br.com.everest.tarefa.service.TarefaService;
 import br.com.everest.tarefa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,10 +30,10 @@ public class TarefaServiceImpl implements TarefaService {
     @Autowired private UserClient userClient;
 
     @Override
-    @CacheEvict("TarefaServiceImpl-findAll")
     public Tarefa save(Tarefa tarefa) {
         if (tarefa.getId() == null){
             tarefa.setCriacao(new Date());
+            tarefa.setGuardada(false);
         }
         if (tarefa.getUserId() == null && tarefa.getStatus().equals(Status.ANDAMENTO)){
             tarefa.setUserId(userClient.logado().getId());
@@ -45,16 +42,14 @@ public class TarefaServiceImpl implements TarefaService {
     }
 
     @Override
-    @CacheEvict("TarefaServiceImpl-findAll")
     public void remove(Tarefa tarefa) {
         this.tarefaData.delete(tarefa);
     }
 
     @Override
-    //@Cacheable("TarefaServiceImpl-findAll")
     public List<Tarefa> findAll() {
         List<User> users = new ArrayList<>();
-        return this.tarefaData.findAll().stream().map(tarefa -> {
+        return this.tarefaData.findByGuardadaFalse().stream().map(tarefa -> {
             if (tarefa.getUserId() != null){
                 Optional<User> user = users.stream().filter(e -> e.getId() == tarefa.getUserId()).findAny();
                 if (user.isPresent()){
@@ -70,5 +65,10 @@ public class TarefaServiceImpl implements TarefaService {
     @Override
     public Tarefa findOne(Long id) {
         return this.tarefaData.findOne(id);
+    }
+
+    @Override
+    public List<Tarefa> findLast() {
+        return this.tarefaData.findTop5ByOrderByCriacaoDesc();
     }
 }

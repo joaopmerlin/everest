@@ -29,6 +29,11 @@ public class UsuarioController extends BasicController {
         return this.userClient.findAll();
     }
 
+    @GetMapping("logado")
+    public @ResponseBody User logado(){
+        return this.userClient.logado();
+    }
+
     @PostMapping
     public @ResponseBody User save(@RequestBody @Valid User user){
         return this.userClient.save(user);

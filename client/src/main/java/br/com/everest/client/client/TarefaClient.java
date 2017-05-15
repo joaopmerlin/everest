@@ -22,6 +22,9 @@ public interface TarefaClient {
     @RequestMapping(method = RequestMethod.GET)
     List<Tarefa> findAll();
 
+    @RequestMapping(value = "last", method = RequestMethod.GET)
+    List<Tarefa> findLast();
+
     @RequestMapping(method = RequestMethod.POST)
     Tarefa save(@RequestBody Tarefa tarefa);
 

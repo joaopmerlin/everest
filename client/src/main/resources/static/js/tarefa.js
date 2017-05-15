@@ -65,8 +65,10 @@ var app = new Vue({
                 tarefa = app.tarefasPendente[e.newIndex];
             else if (status === 'ANDAMENTO')
                 tarefa = app.tarefasAndamento[e.newIndex];
-            else
+            else {
                 tarefa = app.tarefasFinalizado[e.newIndex];
+                $("#myModal").modal("show");
+            }
             tarefa.status = status;
             app.salvar(tarefa, true);
         },
@@ -74,6 +76,16 @@ var app = new Vue({
         largarTarefa: function (tarefa) {
             tarefa.userId = null;
             tarefa.status = 'PENDENTE';
+            this.salvar(tarefa);
+        },
+
+        pegarTarefa: function (tarefa) {
+            tarefa.userId = user.id;
+            this.salvar(tarefa);
+        },
+
+        guardarTarefa: function (tarefa) {
+            tarefa.guardada = true;
             this.salvar(tarefa);
         }
 

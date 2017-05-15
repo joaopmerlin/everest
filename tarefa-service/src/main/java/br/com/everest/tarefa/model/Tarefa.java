@@ -41,6 +41,8 @@ public class Tarefa implements Serializable {
 
     private Long userId;
 
+    private Boolean guardada = false;
+
     @Transient
     private User user;
 

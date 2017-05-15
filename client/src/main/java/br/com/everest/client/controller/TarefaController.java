@@ -30,6 +30,11 @@ public class TarefaController extends BasicController {
         return this.tarefaClient.findAll();
     }
 
+    @GetMapping("last")
+    public @ResponseBody List<Tarefa> last(){
+        return this.tarefaClient.findLast();
+    }
+
     @PostMapping
     public @ResponseBody Tarefa save(@RequestBody @Valid Tarefa tarefa){
         return this.tarefaClient.save(tarefa);

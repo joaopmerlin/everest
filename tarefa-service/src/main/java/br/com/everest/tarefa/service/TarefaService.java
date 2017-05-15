@@ -16,4 +16,6 @@ public interface TarefaService {
     List<Tarefa> findAll();
 
     Tarefa findOne(Long id);
+
+    List<Tarefa> findLast();
 }

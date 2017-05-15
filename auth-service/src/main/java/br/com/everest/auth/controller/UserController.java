@@ -50,7 +50,12 @@ public class UserController {
                 throw new RuntimeException("user already exists");
             }
 
-            user.setSenha(bCryptPasswordEncoder.encode("123"));
+            if (user.getSenha() == null || user.getSenha().isEmpty()) {
+                user.setSenha(bCryptPasswordEncoder.encode("123"));
+            } else {
+                user.setSenha(bCryptPasswordEncoder.encode(user.getSenha()));
+            }
+
         } else {
 
             User userAnt = this.userData.findOne(user.getId());
@@ -61,7 +66,11 @@ public class UserController {
     }
 
     @DeleteMapping
-    public void remove(@RequestBody User user){
-        this.userData.delete(user);
+    public void remove(@RequestBody User user, Principal principal){
+        if (user.getEmail().equals(principal.getName())){
+            throw new RuntimeException("Não é possível excluir o usuário logado");
+        } else {
+            this.userData.delete(user);
+        }
     }
 }

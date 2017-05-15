@@ -13,6 +13,125 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{tarefasNaoAtribuidas()}}</div>
+                            <div>Tarefas não atribuidas</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/tarefa">
+                    <div class="panel-footer">
+                        <span class="pull-left">Tarefas</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-clock-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{tarefasAFazer()}}</div>
+                            <div>Tarefas a fazer</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/tarefa">
+                    <div class="panel-footer">
+                        <span class="pull-left">Tarefas</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-bug fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{tarefasEmAndamento()}}</div>
+                            <div>Tarefas em andamento</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/tarefa">
+                    <div class="panel-footer">
+                        <span class="pull-left">Tarefas</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">{{tarefasFinalizadas()}}</div>
+                            <div>Tarefas finalizadas</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/tarefa">
+                    <div class="panel-footer">
+                        <span class="pull-left">Tarefas</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Tarefas por status
+                </div>
+                <div class="panel-body">
+                    <canvas id="chartStatus" height="140"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Últimas tarefas
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a v-for="tarefa in ultimasTarefas" href="#" class="list-group-item">
+                            <i class="fa fa-tasks fa-fw"></i> {{tarefa.descricao}}
+                            <span class="pull-right text-muted small"><em>{{tarefa.data}}</em></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div layout:fragment="script">
