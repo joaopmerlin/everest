@@ -14,7 +14,7 @@ Aplicação para gerenciamento de tarefas, utilizando microserviços.
 <p>Microserviços utilizando Spring Cloud e NetflixOSS.</p>
 <ul>
 <li>Config server</li>
-<li>Discovery service Eureka</li>
+<li>Discovery service</li>
 <li>Oauth2 service</li>
 <li>Tarefa service</li>
 <li>Client Web</li>
