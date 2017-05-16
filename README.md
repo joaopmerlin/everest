@@ -1,5 +1,7 @@
 # Everest
 
+Aplicação para gerenciamento de tarefas, utilizando microserviços.
+
 <h4>Pre requisitos</h4>
 <ul>
 <li>Git</li>
@@ -7,6 +9,7 @@
 </ul>
 
 <h4>Estrutura</h4>
+<p>O projeto segue a stack do Spring Cloud e NetflixOSS.</p>
 <ul>
 <li>Config server</li>
 <li>Discovery service Eureka</li>
