@@ -6,6 +6,7 @@ Aplicação para gerenciamento de tarefas, utilizando microserviços.
 <ul>
 <li>Git</li>
 <li>Java 8</li>
+<li>Maven</li>
 </ul>
 
 <h4>Estrutura</h4>
