@@ -7,6 +7,7 @@ Aplicação para gerenciamento de tarefas, utilizando microserviços.
 <li>Git</li>
 <li>Java 8</li>
 <li>Maven</li>
+<li>NodeJS NPM</li>
 </ul>
 
 <h4>Estrutura</h4>
@@ -23,6 +24,8 @@ Aplicação para gerenciamento de tarefas, utilizando microserviços.
 ``https://github.com/joaopmerlin/everest.git``
 <ul>
 <li>Importar o projeto principal com todos os modulos</li>
+<li>Rodar MVN CLEAN INSTALL no projeto principal (irá instalar e testar todos os módulos)</li>
+<li>Acessar o modulo 'client' client\src\main\resources\static e rodar o 'npm install'</li>
 <li>Executar primeiramente o microservice de configuracao (Config server), as configuracoes sao obtidas do repositorio git</li>
 <li>Executar todos os microservices</li>
 </ul>
