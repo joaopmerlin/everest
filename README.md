@@ -10,7 +10,7 @@ Aplicação para gerenciamento de tarefas, utilizando microserviços.
 </ul>
 
 <h4>Estrutura</h4>
-<p>O projeto segue a stack do Spring Cloud e NetflixOSS.</p>
+<p>Microserviços utilizando Spring Cloud e NetflixOSS.</p>
 <ul>
 <li>Config server</li>
 <li>Discovery service Eureka</li>
