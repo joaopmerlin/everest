@@ -47,7 +47,7 @@ public class UserController {
         if (user.getId() == null) {
 
             if (this.userData.findByEmail(user.getEmail()).isPresent()){
-                throw new RuntimeException("user already exists");
+                throw new RuntimeException("Email ja cadastrado");
             }
 
             if (user.getSenha() == null || user.getSenha().isEmpty()) {

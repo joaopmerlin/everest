@@ -7,26 +7,24 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AuthServiceApplicationTests {
 
-    @Autowired
-    private WebApplicationContext context;
+    @Autowired private WebApplicationContext context;
+    @Autowired private OAuthHelper oAuthHelper;
 
     private MockMvc mockMvc;
 
@@ -54,14 +52,8 @@ public class AuthServiceApplicationTests {
 
     @Test
     public void login() throws Exception {
-        mockMvc.perform(post("/oauth/token")
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .header("authorization", "Basic YXBwOmFwcA==")
-                .param("username", "teste@teste.com")
-                .param("password", "123d")
-                .param("grant_type", "password"))
-                .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+        RequestPostProcessor bearerToken = oAuthHelper.bearerToken("teste@teste.com");
+        mockMvc.perform(get("/user/principal").with(bearerToken)).andExpect(status().isOk());
     }
 
 }
