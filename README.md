@@ -1,4 +1,4 @@
-# Everest
+# Projeto Everest
 
 Aplicação para gerenciamento de tarefas, utilizando microserviços.
 
