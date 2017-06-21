@@ -1,0 +1,96 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono';
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #e9ebee;
+  font-family: Roboto,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+
+md-sidenav {
+  width: 240px;
+  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+}
+
+app-toolbar {
+  display: block;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+md-toolbar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+}
+
+md-sidenav h3 {
+  border: none;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 24px;
+  text-transform: uppercase;
+  font-weight: 400;
+  margin: 0;
+  padding: 0 16px;
+  background: rgba(0, 0, 0, .32);
+  color: hsla(0, 0%, 100%, .87);
+}
+
+md-sidenav li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .06);
+  color: rgba(0, 0, 0, .54);
+}
+
+md-sidenav li > a {
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 47px;
+  text-decoration: none;
+  transition: all .3s;
+  padding: 0 16px;
+  position: relative;
+  color: rgba(0, 0, 0, .54);
+}
+
+md-sidenav li > a:hover {
+  background: #fafafa;
+  color: #3f51b5;
+}
+
+.sidenav-item-selected {
+  font-weight: 600 !important;
+}
+
+.mat-sidenav-container {
+  background-color: #e9ebee;
+}
+
+.mat-sidenav-content {
+  height: calc(100vh - 55px) !important;
+}
+
+.mat-toolbar {
+  min-height: 55px !important;
+}
+
+.mat-toolbar-row {
+  height: 55px !important;
+}
+
+.flex-spacer {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}

@@ -1,0 +1,60 @@
+<form #loginForm="ngForm" (submit)="login(user)" *ngIf="!createAccount">
+  <md-card class="card-login">
+    <md-card-header>
+      <md-card-title>Login</md-card-title>
+    </md-card-header>
+    <md-card-content>
+
+      <md-input-container class="full-width">
+        <input mdInput type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
+      </md-input-container>
+      <md-input-container class="full-width">
+        <input mdInput type="password" [(ngModel)]="user.password" name="password" placeholder="Password" required>
+      </md-input-container>
+
+    </md-card-content>
+    <md-card-actions>
+      <button class="full-width" type="submit" md-raised-button color="primary" [disabled]="!loginForm.form.valid">
+        Login
+      </button>
+      <a class="forgotPassword" color="primary">Forgot Password?</a>
+      <small>Do not have an account?</small>
+      <button class="full-width" type="button" md-raised-button color="accent" (click)="createAccount = true">Create an
+        account
+      </button>
+    </md-card-actions>
+  </md-card>
+</form>
+
+
+<form #accountForm="ngForm" (submit)="create(user)" *ngIf="createAccount">
+  <md-card class="card-login">
+    <md-card-header>
+      <md-card-title>Create an account</md-card-title>
+    </md-card-header>
+    <md-card-content>
+
+      <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="user.name" type="text" name="name" placeholder="Full name" required>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="user.email" type="email" name="email" placeholder="Email" required>
+      </md-input-container>
+
+      <md-input-container class="full-width">
+        <input mdInput [(ngModel)]="user.password" type="password" name="password" placeholder="Password" required>
+      </md-input-container>
+
+    </md-card-content>
+    <md-card-actions>
+      <button class="full-width" type="submit" md-raised-button color="primary" [disabled]="!accountForm.form.valid">
+        Create an account
+      </button>
+      <small class="alreadyHaveAccount">Already have an account?</small>
+      <button class="full-width" type="button" md-raised-button color="accent" (click)="createAccount = false">Login
+      </button>
+    </md-card-actions>
+  </md-card>
+</form>
+

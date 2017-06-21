@@ -25,8 +25,8 @@
         <module>config-server</module>
         <module>discovery-service</module>
         <module>auth-service</module>
-        <module>tarefa-service</module>
-        <module>client</module>
+        <module>api-service</module>
+        <module>proxy</module>
     </modules>
 
     <dependencies>
@@ -37,6 +37,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
 
         <dependency>

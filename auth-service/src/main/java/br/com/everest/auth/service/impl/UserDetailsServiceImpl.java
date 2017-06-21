@@ -1,15 +1,13 @@
 package br.com.everest.auth.service.impl;
 
-import br.com.everest.auth.data.UserData;
-import br.com.everest.auth.model.User;
+import br.com.everest.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 /**
  * Created by joao on 11/05/17.
@@ -19,13 +17,14 @@ import java.util.Optional;
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired private UserData userData;
+    @Autowired private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userData.findByEmail(username);
-        if (user.isPresent()){
-            return user.get();
+        User user = userService.findByEmailOrUsername(username);
+        if (user != null) {
+            return new org.springframework.security.core.userdetails
+                    .User(user.getUsername(), user.getPassword(), AuthorityUtils.NO_AUTHORITIES);
         } else {
             throw new UsernameNotFoundException("username not found");
         }
